@@ -1,81 +1,51 @@
-<!doctype html>
-<html class="no-js" lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title><?php wp_title(); ?></title>
-		
-		<?php wp_head(); ?>
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+<head>
 
-	</head>
-	<body <?php body_class(); ?>>
-		<!-- <div class="top-bar"></div> -->
-			<nav class="fill">
-				<div class="container clearfix">
-						<div class="heading-logo col-5">
-							<a href="<?php bloginfo('url'); ?>">
-								<img class="heading" src="http://localhost/wordpress/wp-content/uploads/2016/10/logo.png">
-							</a>
-						 	<!-- <div class="tag-line">
-					 			<p><?php bloginfo('description'); ?></p>
-					 		</div> -->
-					 	</div>	
-					
+	<title><?php bloginfo('name'); ?> blog</title>
 
-					<div class="col-6 right">
-						<?php 
+	<meta name="viewport" content="width=device-width initial-scale=1.0">
+	<meta charset="<?php bloginfo('charset'); ?>">
+	<meta name="description" content="Hey Google user, I'm Daniel Mobbs. I am a freelance web developer new to the scene, check out my projects HERE and drop me a quick message.">
+	<?php wp_head(); ?>
+	
+</head>
+<body <?php body_class(); ?>>
 
-							$defaults = array(
-								'container' => false,
-								'theme_location' => 'primary-menu',
-								'container_class' => 'nav-links right'
-								
-								
-						);
 
-							wp_nav_menu( $defaults );
+ 
+	<?php if (is_single( ) ) : ?>
 
-						?>
-					</div>	
+		<nav id="navbar">
+				<div class="site-container">
+					<div id="portfolio-logo"><?php echo the_title() ;?></div>
+					<div class="portfolio-container">					
+						<a class="nav-icon" href="index.html"><img src="<?php echo get_bloginfo('template_url') ?>/Images/noun-arrow.png"></a>
+					</div>
+				</div>	
+		</nav>				
 
-					<!-- <ul class="nav-links right">
-						<li><a href="index.html">Home</a></li>
-						<li><a href="blog.html">Blog</a></li>
-						<li><a href="projects.html">My Projects</a></li>
-					</ul> -->
-					
-			 	</div>
-			</nav>	
-				
-		<div class="site-header">
-		 	<div class="wrapper clearfix">
-		 		   <!--<div class="header-img left">-->		 				
-		 				 <div class="inner-header-img"> 
-		 					<div class="site-descrip relative"> 
-			 					<img src="http://localhost/wordpress/wp-content/uploads/2016/09/header-img1-2.png"><!-- <?php wd_slider(1) ;?> -->
-			 					<button class="button">Learn more here</button>			 	
-							</div>
-		 				 </div>	
-		 			<!--</div>	-->		
-		 			
+	<?php else : ?>
+
+		<nav id="navbar">
+			<div class="site-container">
+				<a href="index.html"><div id="logo" src="">Daniel Mobbs</div></a>
+				<div class="nav">
+					<a href="#projects">Projects</a>
+					<a href="#contact">contact</a>					
+				</div>
+			</div>	
+		</nav>
+		<div class="site-header relative">
+			<div class="site-container tagline">
+				<div class="description-header">Web<br />developer</div>	
+				<div id="tagline">follow my journey</div>	
+				<div class="social-container">
+					<a href="https://www.facebook.com/d.s.mobbzy/" target="_blank"><img class="social-icon" src="<?php echo get_bloginfo('template_url') ?>/Images/Facebook.png"/></a>	
+					<a href="https://github.com/mobbzys" target="_blank"><img class="social-icon" src="<?php echo get_bloginfo('template_url') ?>/Images/Github.png"/></a>	
+					<a href="https://uk.pinterest.com/stixman696/" target="_blank"><img class="social-icon" src="<?php echo get_bloginfo('template_url') ?>/Images/Pinterest.png"/></a>	
+				</div>
 			</div>
-		</div>	
-		<div class="banner-second">
-			<div class="container clearfix">
- 				<div class="img-wrapper left">
- 					<a href="https://www.facebook.com/d.s.mobbzy" target="_blank">
- 					<img class="social-icon" src="http://localhost/wordpress/wp-content/uploads/2016/10/Facebook.png" />
- 					</a>
-
- 					<a href="https://uk.pinterest.com/dsmobbzy/" target="_blank">
- 					<img class="social-icon" src="http://localhost/wordpress/wp-content/uploads/2016/10/Pinterest.png" />
- 					</a>
- 				</div>
- 				<div class="social-links right">
- 					<h2>Phone & email</h2>
- 					<p>07891009354</p>
-					<p>Daniel.s.mobbs@gmail.com</p>
- 				</div>
-
- 			</div>	 				 	
 		</div>
+
+	<?php endif ;?>	

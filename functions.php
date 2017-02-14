@@ -1,60 +1,29 @@
-<?php 
+<?php
 
-add_theme_support( 'menus' ); 
-add_theme_support( 'post-thumbnails');
-add_theme_support( 'custom-header');
-
-
-function register_theme_menus() {
-
-	register_nav_menus( 
-		array(
-			'primary-menu' =>__( 'primary-Menu' )
-		)
-	);
+function dsm_styles() {
+	wp_enqueue_style('style', get_stylesheet_uri() );
 }
-add_action( 'init', 'register_theme_menus' );
+add_action( 'wp_enqueue_scripts', 'dsm_styles' ); 
 
-function dsm_create_widget( $name, $id, $description ) {
+//@import url( "stype-portfolio.css" );
+//@import url( "https://fonts.googleapis.com/css?family=Ubuntu" )
 
-	register_sidebar(array(
-		'name' => __( $name ),	 
-		'id' => $id, 
-		'description' => __( $description ),
-		'before_widget' => '<div class="widget">',
-		'after_widget' => '</div>',
-		'before_title' => '<h2 class="module-heading">',
-		'after_title' => '</h2>'
-	));
+add_theme_support( 'post-thumbnails' );  //Adds thumbnails compatibility to the theme 
+// set_post_thumbnail_size( 250, 250 ); // 50 pixels wide by 50 pixels tall, resize mode
 
+function register_widget_areas() {
+	register_sidebar( array(
+		'name'          => __( ' Front-page-blog' ),
+		'id'            =>'dsm_blog',
+		'description'   => __( 'Add widgets here to appear on front page.' ),
+		'before_widget' => '
+		', 'after_widget' => '
+		', 'before_title' => '
+		<h2 class="widget-title">', 'after_title' => '</h2>
+', ) ); } add_action( 'widgets_init', 'register_widget_areas' ); ;
+
+function wpb_autolink_featured_images( $html, $post_id, $post_image_id ) {
+$html = '<a href="' . get_permalink( $post_id ) . '" title="' . esc_attr( get_the_title( $post_id ) ) . '">' . $html . '</a>';
+return $html;
 }
-
-dsm_create_widget( 'Page Sidebar', 'page', 'Displays on the side of pages with a sidebar' ) ;
-dsm_create_widget( 'footer', 'footer', 'Displays on the side of pages with a sidebar' ) ;
-dsm_create_widget( 'banner-middle', 'banner-middle', 'Displays on the side of pages in the blog section' ) ;
-dsm_create_widget( 'header', 'header', 'Displays in header section' ) ;
-
-	register_default_headers( array(
-		'binary' => array(
-		'url'           => 'Images/headers/binary.jpg',
-		'thumbnail_url' => 'Images/headers/binary-thumbnail.jpg',
-		'description'   => __( 'code', 'The warp' )
-	)
-) );		
-
-function dsm_theme_styles() {
-
-	wp_enqueue_style( 'main_css', get_template_directory_uri() . '/style.css' );
-	wp_enqueue_style( 'normalize_css', get_template_directory_uri() . '/normalize.css' );
-
-}
-add_action( 'wp_enqueue_scripts', 'dsm_theme_styles' );
-
-//function dsm_theme_js() {
-
-	//wp_enqueue_script( '', get_template_directory_uri() . '');
-
-//}
-//add_action( 'dsm_enqueue_scripts', 'dsm_theme_js' );
-
-?>
+add_filter( 'post_thumbnail_html', 'wpb_autolink_featured_images', 10, 3 );
