@@ -1,4 +1,6 @@
-# dans-legendary-journey
-my portfolio site
+# Mobbzys-legendary-journey
+Portfolio site
 
-this is the first edit of my portfolio site and first time on here. So go easier with me folks. I just want to know what you guys think of this. The coding is not top notch but I am learning still, see what ya think. It needs configuring with smaller screens. cheers guys,
+I have updated my porfolio website and here it is, by no means complete. Feel free to use it on your own wordpress website if you wish. 
+
+Cheers guys.
